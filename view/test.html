@@ -1,0 +1,234 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>手机接口测试!</title>
+<script type="text/javascript" src="static/js/jquery/1.11.3/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="static/js/jquery/jquery.form.js"></script>
+<script type="text/javascript" src="static/js/json/json2.js"></script>
+<script type="text/javascript">
+function encryptData(){
+	$.ajax({
+    	type: "post",
+		url: "/test/encrypt",
+		data:{"param":$("#paramMingwei").val()},
+		scriptCharset: "UTF-8",
+		dataType:"json",
+		success:function(r){
+			$("#param").val(r.data);
+		},
+		error:function(XMLHttpRequest){
+			 alert('错误  Code:'+XMLHttpRequest.status);
+		}
+    });		
+}
+function decryptData(){
+	$.ajax({
+    	type: "post",
+		url: "/test/decrypt",
+		data:"param="+$("#param").val(),
+		scriptCharset: "UTF-8",
+		dataType:"json",
+		success:function(r){
+			$("#paramJiemi").val(JSON.stringify(r));
+		},
+		error:function(XMLHttpRequest){
+			 alert('错误  Code:'+XMLHttpRequest.status);
+		}
+    });		
+}
+function sendData(){	
+	$.ajax({
+    	type: "post",
+		url: $("#apiUrl").val(),
+		data:"para="+$("#param").val(),
+		scriptCharset: "UTF-8",
+		dataType:"text",
+		success:function(r){
+		 	 $("#result").val(r);
+		},
+		error:function(XMLHttpRequest){
+			 alert('错误  Code:'+XMLHttpRequest.status);
+		}
+    });	
+}
+
+function returnMiwJiemi(){
+	$.ajax({
+    	type: "post",
+		url: "/test/miw/jiemi",
+		data:"param="+$("#result").val(),
+		scriptCharset: "UTF-8",
+		dataType:"json",
+		success:function(r){
+			$("#resultJiemi").val(JSON.stringify(r.data));
+		},
+		error:function(XMLHttpRequest){
+			 alert('错误  Code:'+XMLHttpRequest.status);
+		}
+    });		
+}
+function returnMiwJiema(){
+	$.ajax({
+    	type: "post",
+		url: "/test/miw/jiema",
+		data:"param="+$("#result").val(),
+		scriptCharset: "UTF-8",
+		dataType:"json",
+		success:function(r){
+			$("#resultJiema").val(JSON.stringify(r.data));
+		},
+		error:function(XMLHttpRequest){
+			 alert('错误  Code:'+XMLHttpRequest.status);
+		}
+    });		
+}
+function returnMingwJiema(){
+	$.ajax({
+    	type: "post",
+		url: "/test/mingw/jiema",
+		data:"param="+$("#result").val(),
+		scriptCharset: "UTF-8",
+		dataType:"json",
+		success:function(r){
+			$("#resultJiema").val(JSON.stringify(r.data));
+		},
+		error:function(XMLHttpRequest){
+			 alert('错误  Code:'+XMLHttpRequest.status);
+		}
+    });		
+}
+function removeAll(){
+	$("#apiUrl").val("");
+	$("#paramMingwei").val("");
+	removeResult();	
+}
+function removeParam(){
+	$("#paramMingwei").val("");
+}
+function removeResult(){
+	$("#param").val("");
+	$("#paramJiemi").val("");
+	$("#result").val("");
+	$("#resultJiemi").val("");
+	$("#resultJiema").val("");
+}
+function sendCheckcode(){
+	removeAll();
+	$("#apiUrl").val("http://api.yixin.ny.cn/yx/user/sendCode");
+	$("#paramMingwei").val("{'mobile':'','imei':'100000','mac':'EC-00-0F-BB-0B-0B','version':'1.0'}");
+}
+function upload(){
+	$('#form2').ajaxSubmit( {
+		url : '/picture/upload',
+		type : 'post',
+		cache : false,
+		dataType : 'text',
+		success:function(r){
+		 	 $("#result").val(r);
+		},
+		error:function(XMLHttpRequest){
+			 alert('错误  Code:'+XMLHttpRequest.status);
+		}
+	});
+}
+</script>
+</head>
+<body>
+<form id="form2" name="form2" method="post" enctype="multipart/form-data">  
+<table width="100%" border="0">
+	<tr>
+		<td align="left" width="40%">上传图片:</td>
+		<td>
+			<input type="file" name="file"/>  
+			<input type="button" id="uploadImage" onclick="upload();" value="上传图片"/>  
+		</td>
+	</tr>
+</table>
+</form>
+<form id="form1" name="form1" method="post">
+<table id="t1" border="0" width="100%">
+<tr>
+	<td width="40%">接口地址：<input type="text" size="70" value="" id="apiUrl" name="apiUrl"/></td>
+	<td align="left" width="60%" colspan="2">
+		<input type="button" id="csjiami" name="csjiami" onclick="encryptData();" value="参数加密"/>
+		<input type="button" id="csjiemi" name="csjiemi" onclick="decryptData();" value="参数解密"/>
+		<input type="button" id="tijiao" name="tijiao" onclick="javascript:sendData();" value="提交数据"/>
+		<input type="button" id="b_returnMiwJiemi" name="b_returnMiwJiemi" onclick="returnMiwJiemi();" value="返回密文解密"/>
+		<input type="button" id="b_returnMiwJiema" name="b_returnMiwJiema" onclick="returnMiwJiema();" value="返回密文解码"/>
+		<input type="button" id="b_returnMingwJiema" name="b_returnMingwJiema" onclick="returnMingwJiema();" value="返回明文解码"/>
+		<input type="button" id="b_removeAll" name="b_removeAll" onclick="removeAll();" value="清除所有" />
+		<input type="button" id="b_removeResult" name="b_removeResult" onclick="removeResult();" value="清除结果" />
+		<input type="button" id="b_removeParam" name="b_removeParam" onclick="removeParam();" value="清除输入参数" />
+		<input type="button" id="b_sendCheckcode" name="b_sendCheckcode" onclick="sendCheckcode();" value="发验证码" />
+	</td>
+</tr>
+<tr>
+	<td colspan="3" align="left">接口参数(JSON)：</td>
+</tr>
+<tr>
+	<td colspan="3">
+		<textarea id="paramMingwei" name="paramMingwei" rows="5" style="width:100%"></textarea>
+	</td>
+</tr>
+<tr>
+	<td>接口参数(加密后)：</td>
+	<td width="30%">接口参数(解密后)：</td>
+	<td width="30%">使用数明：</td>
+</tr>
+<tr>
+	<td><textarea id="param" name="param" rows="8" style="width:100%"></textarea></td>
+	<td><textarea id="paramJiemi" name="paramJiemi" rows="8" style="width:100%"></textarea></td>
+	<td valign="top" style="padding: 10px;font-size:13px;">
+		1. 支持任意级数的JSON数据加密。<br/>
+		2. 参数解密后，是将参数放到Map中返回的，所以顺序会变。<br/>
+		3. 解密，是将密文解成明文，不做Base64解码。<br/>
+		4. 解码，是做Base64解码。<br/>
+		5. 根据返回的是秘文还是明文，选择相应按钮处理。 
+	</td>
+</tr>
+<tr>
+	<td>返回数据(加密)：</td>
+	<td>返回数据(解密)：</td>
+	<td>返回数据(解码)：</td>
+</tr>
+<tr>
+	<td><textarea id="result" name="result" rows="8" style="width:100%"></textarea></td>
+	<td><textarea id="resultJiemi" name="resultJiemi" rows="8" style="width:100%;"></textarea></td>
+	<td><textarea id="resultJiema" name="resultJiema" rows="8" style="width:100%;"></textarea></td>
+</tr>
+</table>
+</form>
+<br/>
+<br/>
+<br/>
+<br/>
+<h5>头像上传</h5>
+<form id="headImageUpload" action="yx/user/info/head_image_upload" method="post" enctype="multipart/form-data">
+	<input type="file" name="file"/>
+	<input type="button" onclick="saveImage();" value="保存头像"/>
+</form>
+<script type="text/javascript">
+	function saveImage() {
+		$('#headImageUpload').ajaxSubmit( {
+			url : '/user/info/head_image_upload',
+			type : 'post',
+			data : {'para':$("#param").val()},
+			cache : false,
+			dataType : 'text',
+			success:function(r){
+			 	 $("#result").val(r);
+			},
+			error:function(XMLHttpRequest){
+				 alert('错误  Code:'+XMLHttpRequest.status);
+			}
+		});
+	}
+	var encrypt='CC%2bC/wjdf9%2bYP4GZHPg93w=='
+	console.log('1:'+encrypt);
+	encrypt=encrypt.replace(/(%2b)/g,'+');
+	console.log('2:'+encrypt);
+</script>
+</body>
+</html>
