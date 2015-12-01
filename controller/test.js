@@ -1,5 +1,5 @@
 var aes=require('./../util/aes');
-var resJson=require('./../util/response2json.js');
+
 var test=function(req,res){
 	res.render('test');
 }
@@ -7,21 +7,25 @@ var encrypt=function(req,res){
 	var param=req.body.param;
 	console.log('req.body is :'+req.body);
 	if (!param){
-		resJson.responseApiJson(res,'error params')
+		res.status(200).json({'data':'error params'});
+
 		res.end();
 	}else{
-		resJson.responseApiJson(res,param,true);
+		res.status(200).json({'data':aes.encrypt(param)});
+
 		res.end();
 	}
 }
 var decrypt=function(req,res){
 	var param=req.body.param;
 	if (!param){
-		resJson.responseApiJson(res,'error params')
+		res.status(200).json({'data':'error params'});
+
 		res.end();
 	}else{
 		param=aes.decrypt(param);
-		res.status(200).json({'data':param});
+		var jsonObj=eval('('+param+')');
+		res.status(200).send(jsonObj);
 		res.end();
 	}
 }

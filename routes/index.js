@@ -14,8 +14,9 @@ route.get('/',function(req,res){
 	res.end();
 });
 route.get('/data',base.sendData);
-route.get('/user/queryAccountExisted',user.queryAccountExisted);
+route.post('/user/queryAccountExisted',user.queryAccountExisted);
 route.get('/test',test.test);
 route.post('/test/encrypt',test.encrypt);
 route.post('/test/decrypt',test.decrypt);
+route.post('/test/miw/jiemi',test.decrypt);
 module.exports=route;
