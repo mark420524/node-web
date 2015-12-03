@@ -3,6 +3,9 @@ var aes=require('./../util/aes');
 var test=function(req,res){
 	res.render('test');
 }
+var jsTest=function(req,res){
+	res.render('js_test');
+}
 var encrypt=function(req,res){
 	var param=req.body.param;
 	console.log('req.body is :'+req.body);
@@ -32,3 +35,4 @@ var decrypt=function(req,res){
 exports.encrypt=encrypt;
 exports.decrypt=decrypt;
 exports.test=test;
+exports.jsTest=jsTest;

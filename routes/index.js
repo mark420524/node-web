@@ -16,6 +16,7 @@ route.get('/',function(req,res){
 route.get('/data',base.sendData);
 route.post('/user/queryAccountExisted',user.queryAccountExisted);
 route.get('/test',test.test);
+route.get('/js_test',test.jsTest);
 route.post('/test/encrypt',test.encrypt);
 route.post('/test/decrypt',test.decrypt);
 route.post('/test/miw/jiemi',test.decrypt);

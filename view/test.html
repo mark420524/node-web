@@ -62,7 +62,7 @@ function returnMiwJiemi(){
 		scriptCharset: "UTF-8",
 		dataType:"json",
 		success:function(r){
-			$("#resultJiemi").val(JSON.stringify(r.data));
+			$("#resultJiemi").val(JSON.stringify(r));
 		},
 		error:function(XMLHttpRequest){
 			 alert('错误  Code:'+XMLHttpRequest.status);
@@ -133,6 +133,7 @@ function upload(){
 		}
 	});
 }
+
 </script>
 </head>
 <body>

@@ -20,4 +20,15 @@ function trim(Str , Flag) {
 function isEmpty(str){
 	return (null==str) || (undefined==str) || (trim(str)=='') || (trim(str)=='null');
 }
+function isObject(obj){
+	var hasProp = false;
+	if (typeof obj === "object" ){  
+		for (var prop in obj){  
+			hasProp = true;  
+			break;  
+		}  
+    }  
+	return hasProp;
+}
+exports.isObject=isObject;
 exports.isEmpty=isEmpty;
