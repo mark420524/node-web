@@ -1,0 +1,1 @@
+insert into silivall_generate_id (type,value,create_time) values ('user',1,now());
