@@ -5,9 +5,15 @@ var strjson2Obj=require('./../util/strJson2Obj');
 var response2Json=require('./../util/response2json');
 var StringUtil=require('./../util/strUtil');
 var CodeStatic=require('./../static/codeStatic');
+var DateUtil=require('./../util/dateUtil.js');
 /*获得连接池*/
 var pool=dbpool.pool;
 
+function  createUid(con,type) {
+	var date=new Date();
+	var uid=CodeStatic.Server.SERVER_ID+date.pattern("MMdd");
+	//待生成uid
+}
 var queryAccountExisted=function(req,res){
 	
 	params=req.body.para;
@@ -36,6 +42,7 @@ var queryAccountExisted=function(req,res){
 				throw err;
 			}
 			var data={};
+			
 			if(StringUtil.isObject(rows)){
 
 				/*第三方登录账号已注册*/
@@ -47,6 +54,7 @@ var queryAccountExisted=function(req,res){
 				return response2Json.responseApiJson(res,data,true);
 				
 			}else{
+
 				data.code=CodeStatic.Code.STATUS_OK;
 				data.uid='';
 				data.isRegistered=1;

@@ -1,17 +1,4 @@
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>手机接口测试!</title>
-<script type="text/javascript" src="static/js/jquery/1.11.3/jquery-1.11.3.min.js"></script>
-
-<script type="text/javascript">
-
-	for(var i=0;i<10;i++){
-		console.log(parseInt(Math.random()*100000));
-	}
-	/** 
+/** 
  * 对Date的扩展，将 Date 转化为指定格式的String * 月(M)、日(d)、12小时(h)、24小时(H)、分(m)、秒(s)、周(E)、季度(q)
     可以用 1-2 个占位符 * 年(y)可以用 1-4 个占位符，毫秒(S)只能用 1 个占位符(是 1-3 位的数字) * eg: * (new
     Date()).pattern("yyyy-MM-dd hh:mm:ss.S")==> 2006-07-02 08:09:04.423      
@@ -52,12 +39,4 @@ Date.prototype.pattern=function(fmt) {
         }         
     }         
     return fmt;         
-}
-var date=new Date();
-alert(date.pattern("yyyyMMdd"));
-</script>
-</head>
-<body>
-	<h1>js 测试文档</h1>
-</body>
-</html>
+}      

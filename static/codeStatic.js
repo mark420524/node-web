@@ -9,5 +9,8 @@ module.exports={
 		STATUS_404:404,
 		STATUS_500:500,
 		STATUS_403:403
+	},
+	Server:{
+		SERVER_ID:1	
 	}
 }
