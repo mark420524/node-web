@@ -56,7 +56,7 @@ alter table silivall_generate_id comment '主键值保存表';
 
 create table silivall_user_account
 (
-   uid                  int(11) not null comment '会员ID，分表列',
+   uid                  int(11) not null AUTO_INCREMENT comment '会员ID，分表列',
    silivall_account     varchar(50) comment '账号，唯一，不验证',
    handset_account      varchar(20) comment '手机账号，唯一，要验证',
    email_account        varchar(100) comment '邮箱账号，唯一，要验证',

@@ -54,11 +54,50 @@ var queryAccountExisted=function(req,res){
 				return response2Json.responseApiJson(res,data,true);
 				
 			}else{
-
-				data.code=CodeStatic.Code.STATUS_OK;
-				data.uid='';
-				data.isRegistered=1;
-				return response2Json.responseApiJson(res,data,true);
+				con.beginTransaction(function(err){
+					if(err){
+						console.log('con beginTransaction error ==>' + err);
+						return response2Json.responseException(res);
+					}else{
+						var insertSql='insert into silivall_user_account(status,create_time) values(\'1\',now())';
+						var insertOauthSql='insert into silivall_user_oauth(uid,oauth_third_id,openid,create_time) values (?,?,?,now())';
+						var insertid='0';
+						con.query(insertSql,function(err,rows){
+							if(err){
+								console.log('conn query ==>'+err);
+								con.rollback(function(){
+									return response2Json.responseException(res);
+								});
+							}
+							insertid=rows.insertId;
+							con.query(insertOauthSql,[insertid,thirdId,openid],function(err,rows){
+								if(err){
+									console.log('conn query ==>'+err);
+									con.rollback(function(){
+										return response2Json.responseException(res);
+									});
+								}else{
+									con.commit(function(err){
+										if(err){
+											console.log('conn commit ==>'+err);
+											con.rollback(function(){
+												return response2Json.responseException(res);
+											});
+										}
+										data.code=CodeStatic.Code.STATUS_OK;
+										data.uid=insertid;
+										data.isRegistered=1;
+										return response2Json.responseApiJson(res,data,true);
+									});
+								}
+							});
+							
+							
+						});
+					}
+				});
+				
+				
 			}
 			/*连接池链接释放*/
 			con.release();
