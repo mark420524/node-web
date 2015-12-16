@@ -1,3 +1,5 @@
+var moment = require('moment');
+
 /** 
  * 对Date的扩展，将 Date 转化为指定格式的String * 月(M)、日(d)、12小时(h)、24小时(H)、分(m)、秒(s)、周(E)、季度(q)
     可以用 1-2 个占位符 * 年(y)可以用 1-4 个占位符，毫秒(S)只能用 1 个占位符(是 1-3 位的数字) * eg: * (new
@@ -40,3 +42,15 @@ Date.prototype.pattern=function(fmt) {
     }         
     return fmt;         
 }      
+
+
+var dateUtil = {
+	currentTimeMillis:function(){
+		return moment().valueOf();
+	},
+	isExpires:function(expiresIn){
+		return (moment().valueOf())>=expiresIn;
+	}
+}
+console.log(dateUtil.isExpires(1450257591560));
+module.exports=dateUtil;

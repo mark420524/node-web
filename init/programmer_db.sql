@@ -82,3 +82,17 @@ create table silivall_user_account
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 alter table silivall_user_account comment '会员登录账号表';
+
+
+create table silivall_hx_token 
+(
+   id			int(11) not null auto_increment comment 'token 主键',
+   access_token		varchar(254) comment '环信token',
+   expires_in		datetime comment '环信token过期时间',
+   application		varchar(36) comment '当前app的UUID值',
+   create_time		datetime not null comment '记录时间',
+--   update_time		datetime comment '最后更新时间',
+   primary key (id)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+alter table silivall_hx_token comment '环信token信息记录表';

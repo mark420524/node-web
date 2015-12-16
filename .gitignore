@@ -1,4 +1,5 @@
 *.bak
+*.zip
 *.log
 .project
 .classpath
