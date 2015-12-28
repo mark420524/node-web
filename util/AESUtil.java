@@ -27,6 +27,8 @@ public class AESUtil {
 	private static final String ENCRYPT = "AES";
 	// ECB 模式下不适用 向量定义
 	private static final String ENCRYPT_TYPE = "AES/ECB/PKCS5Padding"; 
+
+	private static final String PASSWORD = "MARK123456###42052467ANDROID";
 	
 	// 此处向量可自定义，请注意如果超过0x80请加(byte)强制转换
 //	private static final byte[] OIV = { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06,
