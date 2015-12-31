@@ -1,0 +1,56 @@
+{
+  "name": "node-web",
+  "description": "build programmer server web app",
+  "version": "1.0",
+  "author": {
+    "name": "mark",
+    "email": "liujie0420@126.com"
+  },
+  "contributors": [
+    {
+      "name": "",
+      "email": ""
+    }
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mark420524/node-web"
+  },
+  "homepage": "",
+  "keywords": [
+    "node",
+    "web"
+  ],
+  "dependencies": {
+    "async": ">=1.5.0",
+    "body-parser": ">=1.14.1",
+    "bufferhelper": ">=0.2.1",
+    "ejs": ">=2.3.4",
+    "express": ">=4.13.3",
+    "iconv-lite": ">=0.4.13",
+    "moment": ">=2.10.6",
+    "mysql": ">=2.9.0"
+  },
+  "devDependencies": {
+    
+  },
+  "engines": {
+    "node": ">= 4.2.2"
+  },
+  "files": [
+    "LICENSE",
+    "Readme.md",
+    "app.js"
+  ],
+  "scripts": {
+    "test": "mocha --require test/support/env --reporter spec --bail --check-leaks test/ test/acceptance/",
+    "test-ci": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --require test/support/env --reporter spec --check-leaks test/ test/acceptance/",
+    "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --require test/support/env --reporter dot --check-leaks test/ test/acceptance/",
+    "test-tap": "mocha --require test/support/env --reporter tap --check-leaks test/ test/acceptance/"
+  },
+  "gitHead": "",
+  "bugs": {
+    "url": ""
+  }
+}
