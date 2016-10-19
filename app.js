@@ -1,4 +1,6 @@
+/*web 框架*/
 var express=require('express');
+/**解析html的框架*/
 var ejs=require('ejs');
 var app=express();
 var route=require('./routes/index');

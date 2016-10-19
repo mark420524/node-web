@@ -6,11 +6,16 @@ var route=express.Router();
 var base=require('./../controller/base');
 var user=require('./../controller/user');
 var test=require('./../controller/test');
-
+/*
 route.get('/',function(req,res){
 	param=req.query.param;
 	console.log('request param is:'+param);
 	res.status(403).send('you do not have the rights!!!');
+	res.end();
+});
+*/
+route.get('/',function(req,res){
+	res.render('blog/blog');
 	res.end();
 });
 route.get('/data',base.sendData);
