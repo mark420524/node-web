@@ -52,5 +52,7 @@ var dateUtil = {
 		return (moment().valueOf())>=expiresIn;
 	}
 }
+/* 
 console.log(dateUtil.isExpires(1450257591560));
+*/
 module.exports=dateUtil;

@@ -15,7 +15,7 @@ route.get('/',function(req,res){
 });
 */
 route.get('/',function(req,res){
-	res.render('blog/blog');
+	res.render('blog/blog',{title:'mark-小窝'});
 	res.end();
 });
 route.get('/data',base.sendData);
