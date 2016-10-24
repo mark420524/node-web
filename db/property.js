@@ -1,9 +1,17 @@
 module.exports={
-	mysql:{
+	programmer_mysql:{
 		host:'localhost',
 		user:'programmer',
 		password:'$20%24^7programmer',
 		database:'programmer_db',
+		port:3306,
+		charset:'utf8'
+	},
+	mysql:{
+		host:'localhost',
+		user:'blog',
+		password:'$20%24^7programmer',
+		database:'blog_db_001',
 		port:3306,
 		charset:'utf8'
 	}
